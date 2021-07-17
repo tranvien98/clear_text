@@ -1,6 +1,7 @@
 import re
 import pandas as pd 
 from number import NumberProcessing
+from date import readtext
 # from link import read_link
 """
 Hàm clear text 
@@ -102,6 +103,7 @@ def expand(text):
     text = re.sub(_dolar_number_re, expand_dolar, text)
     text = re.sub(_euro_number_re, expand_euro, text)
     text = re.sub(_link_number_re, expand_link, text)
+    text = readtext(text)
     # print(text)
     text = split_symbol(text)
     text = expand_number(text)
