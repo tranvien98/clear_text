@@ -103,12 +103,13 @@ def expand(text):
     text = clear_text(text)
     text = acronyms(text)
     text = re.sub(_comma_number_re, expand_commas, text)
-    # text = re.sub(_point_number_re, remove_point, text)
     text = re.sub(_percent_number_re, expand_percent, text)
     text = re.sub(_den_number_re, expand_den, text)
     text = re.sub(_dolar_number_re, expand_dolar, text)
     text = re.sub(_euro_number_re, expand_euro, text)
     text = re.sub(_link_number_re, expand_link, text)
+    # print(text)
+    # text = re.sub(_point_number_re, remove_point, text)
     text = re.sub(_hours_number_re, expand_hours, text)
     text = read_text(text)
     # print(text)
@@ -118,4 +119,4 @@ def expand(text):
     return text
 
 if __name__ == "__main__":
-    print(expand("Đây là nội dung đáng chú ý quy định tại Thông tư 64/2017/TT-BCA sửa đổi, bổ sung một số điều của Thông tư 15/2014/TT-BCA về đăng ký xe, có hiệu lực từ ngày 12/2/2018."))
+    print(expand("Đây là nội dung đáng chú ý. quy định tại Thông tư 64/2017/TT-BCA sửa đổi, bổ sung một số điều của Thông tư 15/2014/TT-BCA về đăng ký xe, có hiệu lực từ ngày 12/2/2018."))

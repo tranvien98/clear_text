@@ -22,6 +22,7 @@ def read_month(word):
     mon = check_month(word)
     if mon == 0:
         return word
+    word = word.replace('.', '')
     wos = word.strip().split('/')
     if mon == 1:
         if wos[0].isdigit() == False or wos[1].isdigit() == False:
@@ -62,13 +63,13 @@ def read_hours(word):
     """
     convert ...:...:... ->  giờ phút giây
     """
-    res = []
+    word = word.replace('.', '')
     mon = check_hours(word)
     if mon == 0:
         return word
     wos = word.strip().split(':')
     # print(wos)
-
+    res = []
     if mon == 1:
         if wos[0].isdigit() == False or wos[1].isdigit() == False:
             return word
@@ -103,6 +104,6 @@ def read_text(text):
     return ' '.join(res)
 if __name__ == "__main__":
 
-    print(read_text('23:50 thứ 4 3/7'))
+    print(read_text('23:50 thứ 4 3/7/2021.'))
     # word = "232://020"
     # print(re.search('://', word))
