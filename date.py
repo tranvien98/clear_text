@@ -24,6 +24,8 @@ def read_month(word):
         return word
     wos = word.strip().split('/')
     if mon == 1:
+        if wos[0].isdigit() == False or wos[1].isdigit() == False:
+            return word
         if len(wos[0]) <=2 and len(wos[1]) <= 2 and wos[0].isdigit():
             res.append('ngày')
             res.append(wos[0])
@@ -38,6 +40,8 @@ def read_month(word):
             return word
 
     else:
+        if wos[0].isdigit() == False or wos[1].isdigit() == False or  wos[2].isdigit() == False:
+            return word
         res.append(wos[0])
         res.append('tháng')
         res.append(wos[1])
@@ -63,12 +67,12 @@ def read_hours(word):
     if mon == 0:
         return word
     wos = word.strip().split(':')
-    print(wos)
-    if mon != 0:
-        if wos[0].isdigit() == False or wos[0].isdigit() == False:
-            return word
+    # print(wos)
+
     if mon == 1:
-        if len(wos[0]) <=2 and len(wos[1]) <= 2 and len(wos[1]) > 0:
+        if wos[0].isdigit() == False or wos[1].isdigit() == False:
+            return word
+        elif len(wos[0]) <=2 and len(wos[1]) <= 2 and len(wos[1]) > 0:
             res.append(wos[0])
             res.append('giờ')
             res.append(wos[1])
@@ -82,6 +86,8 @@ def read_hours(word):
             return word
 
     else:
+        if wos[0].isdigit() == False or wos[1].isdigit() == False or  wos[2].isdigit() == False:
+            return word
         res.append(wos[0])
         res.append('giờ')
         res.append(wos[1])

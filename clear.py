@@ -118,4 +118,4 @@ def expand(text):
     return text
 
 if __name__ == "__main__":
-    print(expand(" 10h09 Số tiền mn: bạn 1000000$ trả 20h30 20:01 20:30:40 là: 1000000000%. vnđ tại dịa chỉ: https://dsa.fsdaf0@1gmail.com vào 21/8/2021"))
+    print(expand("Đây là nội dung đáng chú ý quy định tại Thông tư 64/2017/TT-BCA sửa đổi, bổ sung một số điều của Thông tư 15/2014/TT-BCA về đăng ký xe, có hiệu lực từ ngày 12/2/2018."))
