@@ -1,6 +1,7 @@
 import re
 import pandas as pd 
 from number import NumberProcessing
+from date import read_text
 # from link import read_link
 """
 Hàm clear text 
@@ -21,6 +22,7 @@ _den_number_re = re.compile(r'([0-9]+(-)[0-9]+)')
 _dolar_number_re = re.compile(r'([0-9]+(\$))')
 _euro_number_re = re.compile(r'([0-9]+(\€))')
 _link_number_re = re.compile(r'([a-zA-Z0-9]+(@)+[a-zA-Z0-9])')
+_hours_number_re = re.compile(r'([0-9]+(h)+[0-9])')
 
 def expand_commas(m):
     return m.group(1).replace(',', ' phẩy ')
@@ -42,6 +44,9 @@ def expand_euro(m):
 
 def expand_link(m):
     return m.group(1).replace('@', ' a còng ')
+
+def expand_hours(m):
+    return m.group(1).replace('h', ' giờ ')
 
 def acronyms(text):
     """
@@ -70,6 +75,8 @@ def expand_number(text):
     """
     return ' '.join([read_number(i) for i in text.strip().split(' ')])
 
+
+
 def  read_number(word):
     nu = NumberProcessing()
     check = True
@@ -96,12 +103,14 @@ def expand(text):
     text = clear_text(text)
     text = acronyms(text)
     text = re.sub(_comma_number_re, expand_commas, text)
-    text = re.sub(_point_number_re, remove_point, text)
+    # text = re.sub(_point_number_re, remove_point, text)
     text = re.sub(_percent_number_re, expand_percent, text)
     text = re.sub(_den_number_re, expand_den, text)
     text = re.sub(_dolar_number_re, expand_dolar, text)
     text = re.sub(_euro_number_re, expand_euro, text)
     text = re.sub(_link_number_re, expand_link, text)
+    text = re.sub(_hours_number_re, expand_hours, text)
+    text = read_text(text)
     # print(text)
     text = split_symbol(text)
     text = expand_number(text)
@@ -109,4 +118,4 @@ def expand(text):
     return text
 
 if __name__ == "__main__":
-    print(expand("Số tiền mn: bạn 1000000$ trả 25-5 là: 1000000000% vnđ tại dịa chỉ: https://dsa.fsdaf0@1gmail.com vào 21/8"))
+    print(expand(" 10h09 Số tiền mn: bạn 1000000$ trả 20h30 20:01 20:30:40 là: 1000000000%. vnđ tại dịa chỉ: https://dsa.fsdaf0@1gmail.com vào 21/8/2021"))
